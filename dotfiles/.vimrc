@@ -9,6 +9,7 @@ set noexpandtab "I like my tabs to stay as tabs
 set splitright  "By default, split to the right
 set number      "Add line numbers
 set ruler       "Display Cursor Position
+set title				"Display filename in titlebar
 
 set incsearch   "Display search resultings as you type
 
@@ -63,7 +64,7 @@ au FileType python call EnterPython()
 
 "PHP
 function! EnterPhp()
-	map <buffer> <F2> :w<CR>:!clear;php -t %
+	map <buffer> <F2> :w<CR>:!clear;php -l %
 	map <buffer> <F3> :w<CR>:!clear;php %
 	let b:comment_prefix = '#'
 endfunction
@@ -141,6 +142,8 @@ au FileType pascal call EnterPascal()
 "Scheme
 function! EnterScheme()
 	map <buffer> <F2> :w<CR>:!mit-scheme < %
+	map <buffer> <F3> :w<CR>:!mit-scheme < %
+	let b:comment_prefix = ';'
 endfunction
 au FileType scheme call EnterScheme()
 
