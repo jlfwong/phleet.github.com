@@ -25,7 +25,7 @@ set incsearch   "Display search resultings as you type
 "Map Semicolon to : for faster command execution
 map ; :
 
-"} and ^} switch between tabs
+"] and ^] switch between tabs
 nmap ] :tabNext<CR>
 imap <C-]> <ESC>:tabNext<CR>i
 
