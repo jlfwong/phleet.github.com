@@ -1,15 +1,24 @@
 syntax on
 
+"Set peachpuff colour scheme - mine is modified slightly
+"Also, I only use this for terminal
+"...it's hideous in GUI...
+colorscheme peachpuff
+
+set mouse=a
+
 set backspace=2 "Make backspace work as expected on Mac OS X
 set autoindent  "Auto Indent code - This simply retains indentation level
-set tabstop=2   "Set space width of tabs
-set sw=2        
+set tabstop=4   "Set space width of tabs
+set sw=4   
 set noexpandtab "I like my tabs to stay as tabs
 
 set splitright  "By default, split to the right
 set number      "Add line numbers
 set ruler       "Display Cursor Position
-set title				"Display filename in titlebar
+set title       "Display filename in titlebar
+"Limit line lengths to 79 characters
+set textwidth=79 
 
 set incsearch   "Display search resultings as you type
 
@@ -17,8 +26,8 @@ set incsearch   "Display search resultings as you type
 map ; :
 
 "} and ^} switch between tabs
-nmap } :tabNext<CR>
-imap <C-}> <ESC>:tabNext<CR>i
+nmap ] :tabNext<CR>
+imap <C-]> <ESC>:tabNext<CR>i
 
 "\ and ^\ switch between split screens
 nmap \ <C-w><C-w>
