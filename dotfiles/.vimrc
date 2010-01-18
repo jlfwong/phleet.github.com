@@ -17,10 +17,9 @@ set splitright  "By default, split to the right
 set number      "Add line numbers
 set ruler       "Display Cursor Position
 set title       "Display filename in titlebar
-"Limit line lengths to 79 characters
-set textwidth=79 
 
 set incsearch   "Display search resultings as you type
+set ignorecase
 
 "Map Semicolon to : for faster command execution
 map ; :
@@ -150,8 +149,11 @@ au FileType pascal call EnterPascal()
 
 "Scheme
 function! EnterScheme()
-	map <buffer> <F2> :w<CR>:!mit-scheme < %
-	map <buffer> <F3> :w<CR>:!mit-scheme < %
+"	map <buffer> <F2> :w<CR>:!clear;~/scheme/bin/mzscheme -e "`cat %`"
+	map <buffer> <F3> :w<CR>:!clear;~/scheme/bin/mzscheme -e "`cat %`"
+	abbreviate scheme_header #reader(lib "htdp-advanced-reader.ss" "lang")((modname fib) (read-case-sensitive #t) (teachpacks ()) (htdp-setting #(#t constructor repeating-decimal #t #t none #f ())))
+"	map <buffer> <F2> :w<CR>:!clear;~/scheme/bin/mzscheme %
+	map <buffer> <F3> :w<CR>:!clear;~/scheme/bin/mzscheme %
 	let b:comment_prefix = ';'
 endfunction
 au FileType scheme call EnterScheme()
@@ -162,3 +164,9 @@ function! EnterJavascript()
 	let b:comment_prefix = '//'
 endfunction
 au FileType javascript call EnterJavascript()
+
+"HTML
+function! EnterHTML()
+	map <buffer> <F2> :w<CR>:!open %
+endfunction
+au FileType html call EnterHTML()
