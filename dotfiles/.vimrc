@@ -4,14 +4,14 @@ syntax on
 "Also, I only use this for terminal
 "...it's hideous in GUI...
 "colorscheme peachpuff
-colorscheme blackboardConsole
+colorscheme blackboard
 
 set mouse=a
 
 set backspace=2 "Make backspace work as expected on Mac OS X
 set autoindent  "Auto Indent code - This simply retains indentation level
 set tabstop=4   "Set space width of tabs
-set sw=4   
+set sw=4
 set noexpandtab "I like my tabs to stay as tabs
 
 set splitright  "By default, split to the right
@@ -22,6 +22,9 @@ set title       "Display filename in titlebar
 
 set incsearch   "Display search resultings as you type
 set ignorecase
+
+filetype plugin off
+filetype indent off
 
 "Map Semicolon to : for faster command execution
 map ; :
@@ -34,18 +37,34 @@ imap <C-]> <ESC>:tabNext<CR>i
 nmap \ <C-w><C-w>
 imap <C-\> <ESC><C-w><C-w>i
 
+"Conque
+nmap ,sh :ConqueTermVSplit bash<CR>
+
+"NERDTree
+nmap ,n :NERDTreeToggle<CR>
+
+"FuzzyFinder
+nmap ,f :FufFile<CR>
+autocmd FileType fuf inoremap <buffer> <Tab> <C-n>
+autocmd FileType fuf inoremap <buffer> / <CR>
+
+",p copies the current filepath
+nmap ,p :!echo `pwd`/% \| pbcopy<CR><CR>
+
+"for use with rg (Rails testing)
+nmap ,t ;!echo rg `pwd`/% \| pbcopy<CR><CR>
+
+" show extraneous whitespace
+match Todo /\s\+$/
+
 "Copy current file to clipboard
 nmap <C-X>	:!cat %\|sed 's/	/    /g'\|pbcopy<CR><CR>
+nmap <C-C>  :!cat %\|sed 's/^/    /g'\|pbcopy<CR><CR>
 
 "LANGUAGE SPECIFIC COMMANDS
-" For all languages: 
+" For all languages:
 "  ,c - Syntax Check / Compile
 "  ,r - Execute
-
-"Comment blocks
-let b:comment_prefix = '"'
-"map ,c :s/^/<C-R>=escape(b:comment_prefix,'\/')<CR>/<CR>
-"map ,C :s/^\(\s*\)<C-R>=escape(b:comment_prefix,'\/')<CR>/\1/<CR>
 
 function! FileWOExt()
 	"Returns the filename with no extension
@@ -135,6 +154,9 @@ function! EnterRuby()
 	map <buffer> ,c :w<CR>:!clear;ruby -c %
 	map <buffer> ,r :w<CR>:!clear;ruby %
 	let b:comment_prefix = '#'
+	set tabstop=2
+	set sw=2
+	set expandtab
 endfunction
 au FileType ruby call EnterRuby()
 
@@ -170,6 +192,9 @@ au FileType javascript call EnterJavascript()
 "HTML
 function! EnterHTML()
 	map <buffer> ,c :w<CR>:!open %
+	set tabstop=2
+	set sw=2
+	set expandtab
 endfunction
 au FileType html call EnterHTML()
 
@@ -180,3 +205,33 @@ function! EnterTEX()
 	set spell
 endfunction
 au FileType tex call EnterTEX()
+
+"HAML
+function! EnterHAML()
+	set tabstop=2
+	set sw=2
+	set expandtab
+	retab 2
+endfunction
+au FileType haml call EnterHAML()
+
+"ActionScript
+function! EnterAS()
+	map <buffer> ,c :!rake
+	"map <buffer> ,c :w<CR>:!mxmlc %
+	"map <buffer> ,r :w<CR>:!open -a Firefox <C-R>=FileWOExt()<CR>.swf
+	set tabstop=4
+	set sw=4
+	set expandtab
+endfunction
+au FileType actionscript call EnterAS()
+
+"Markdown
+function! EnterMarkdown()
+	map <buffer> ,c :w<CR>:!markdown % > <C-R>=FileWOExt()<CR>.html
+	map <buffer> ,r :!open -a Firefox <C-R>=FileWOExt()<CR>.html
+endfunction
+au Filetype mkd call EnterMarkdown()
+
+
+
