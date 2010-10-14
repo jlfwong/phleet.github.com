@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='scp://dreamhost/jamie-wong.com/1yr/'
+let g:netrw_dirhist_2='scp://dreamhost/jamie-wong.com/Jobmine-Improved/'
+let g:netrw_dirhist_3='/Users/jamiewong/Code/marmoset_submit'
+let g:netrw_dirhist_4='/Users/jamiewong/School/2A/CS241/A3/testasm/a3p3'

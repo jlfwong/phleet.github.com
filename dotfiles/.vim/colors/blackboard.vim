@@ -18,16 +18,17 @@ hi Statement    guifg=#f8de33 gui=none
 hi Entity       guifg=#fa6513 gui=none
 hi Support      guifg=#8fa6cd gui=none
 hi LineNr       guifg=#aeaeae guibg=#000000 gui=none 
-hi Title		    guifg=#f6f3e8 guibg=NONE	gui=bold
+hi Title		guifg=#f6f3e8 guibg=NONE	gui=bold
 "hi NonText 		guifg=#808080 guibg=#0D1021	gui=none
 hi NonText      guifg=#000000 guibg=#000000
 
 hi Visual       gui=reverse
 hi VertSplit    guifg=#444444 guibg=#444444
-hi StatusLine   guifg=#f6f3e8 guibg=#444444 gui=italic
-hi StatusLineNC guifg=#857b6f guibg=#444444
-hi SpecialKey	  guifg=#808080 guibg=#343434 gui=none
+hi StatusLine   guifg=#ffffff guibg=#444444 gui=bold
+hi StatusLineNC guifg=#000000 guibg=#444444 gui=none
+hi SpecialKey	guifg=#808080 guibg=#343434 gui=none
 
+hi Pmenu guifg=#8fa6cd guibg=#0D1021
 
 hi link Define          Entity
 hi link Function        Entity
@@ -46,3 +47,4 @@ hi link Conditional     Statement
 hi link StorageClass    Statement
 hi link Operator        Statement
 hi link Statement       Statement
+"au BufEnter * hi Normal guibg=#444444

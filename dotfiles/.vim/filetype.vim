@@ -6,3 +6,4 @@ endif
 
 au! BufRead,BufNewFile *.mkd,*.markdown setf mkd
 au! BufRead,BufNewFile *.json setf json
+au! BufRead,BufNewFile *.j, setf objj
